@@ -66,12 +66,12 @@ func main() {
 				s.Run()
 			} else {
 				// 非服务方式运行
-				switch s.Platform() {
-				case "windows-service":
-					log.Println("可使用 .\\ddns-go.exe -s install 安装服务运行")
-				default:
-					log.Println("可使用 sudo ./ddns-go -s install 安装服务运行")
-				}
+				//switch s.Platform() {
+				//case "windows-service":
+				//	log.Println("可使用 .\\ddns-go.exe -s install 安装服务运行")
+				//default:
+				//	log.Println("可使用 sudo ./ddns-go -s install 安装服务运行")
+				//}
 				run(1 * time.Second)
 			}
 		}
