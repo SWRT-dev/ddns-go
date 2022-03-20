@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
+	"os/exec"
 )
 
 // Webhook Webhook
@@ -84,8 +86,14 @@ func getDomainsStatus(domains []*Domain) updateStatusType {
 
 	if successNum > 0 {
 		// 迭代完成后一个成功，就成功
+		cmd := exec.Command("dbus", "set", "ddns_last_act=更新成功")
+		cmd.Stdout = os.Stdout
+		_ = cmd.Start()
 		return UpdatedSuccess
 	}
+		cmd := exec.Command("dbus", "set", "ddns_last_act=更新失败")
+		cmd.Stdout = os.Stdout
+		_ = cmd.Start()
 	return UpdatedNothing
 }
 
